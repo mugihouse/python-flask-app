@@ -46,6 +46,28 @@ def show_jinja_class():
   hana = Hero('花咲かじいさん', 99)
   return render_template('jinja/show5.html', user = hana)
 
+class Item:
+  def __init__(self, id, name):
+    self.id = id
+    self.name = name
+  def __str__(self):
+    return f'商品ID:{self.id} 商品名:{self.name}'
+
+@app.route('/for_list')
+def show_for_list():
+  item_list = [Item(1, "団子"), Item(2, "肉まん"), Item(3, "どら焼き")]
+  return render_template('for_list.html', items = item_list)
+
+@app.route('/if_detail/<int:id>')
+def show_if_detail(id):
+  item_list = [Item(1, "団子"), Item(2, "肉まん"), Item(3, "どら焼き")]
+  return render_template('if_detail.html', show_id = id, items = item_list)
+
+@app.route('/if')
+@app.route('/if/<target>')
+def show_jinja_if(target="colorless"):
+  print(target)
+  return render_template('jinja/if_else.html', color=target)
 
 if __name__ == '__main__':
   app.run(port=8000)
