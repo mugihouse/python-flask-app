@@ -11,4 +11,7 @@
 </table>
 {% endblock %}
 
-{% block footer %}<a href="{{ url_for('item_list')}}">一覧画面へ</a>{% endblock %}
+{% block footer %}
+  {{super()}}
+  <a href="{{ url_for('item_list')}}">一覧画面へ</a>
+{% endblock %}
