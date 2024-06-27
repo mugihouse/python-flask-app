@@ -69,5 +69,20 @@ def show_jinja_if(target="colorless"):
   print(target)
   return render_template('jinja/if_else.html', color=target)
 
+@app.route('/filter')
+def show_filter_block():
+  word = 'pen'
+  return render_template('filter/block.html', show_word = word)
+
+@app.route('/filter2')
+def show_filter_variable():
+    momo = Hero('桃太郎', 25)
+    kinta = Hero('金太郎', 35)
+    ura = Hero('浦島太郎', 45)
+    kagu = Hero('かぐや姫', 55)
+    kasa = Hero('笠地蔵', 65)
+    hero_list = [momo, kinta, ura, kagu, kasa]
+    return render_template('filter/filter_list.html', heroes = hero_list)
+
 if __name__ == '__main__':
   app.run(port=8000)
