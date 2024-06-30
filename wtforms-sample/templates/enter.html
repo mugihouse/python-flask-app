@@ -5,6 +5,15 @@
 {% endblock %}
 
 {% block content %}
+  <div style="color: red;">
+    {% if form.errors %}
+      <ul>
+        {% for k, v in form.errors.items() %}
+          <li>{{k}}:{{v}}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
   <form method = "POST">
     {{ form.name.label }}{{ form.name(size=20) }}<br>
     {{ form.age.label }}{{ form.age }}<br>
