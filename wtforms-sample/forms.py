@@ -5,7 +5,7 @@ from wtforms.fields import (
 
 # validatorインポート
 from wtforms.validators import (
-  DataRequired, EqualTo, Length, NumberRange, Email
+  DataRequired, EqualTo, Length, NumberRange, Email, ValidationError
 )
 
 # ===========================
@@ -35,3 +35,12 @@ class UserInfoForm(Form):
   note = TextAreaField('備考：')
 
   submit =SubmitField('送信')
+
+
+  # カスタムバリデータ
+  # 英数字と記号が含まれているかチェック
+  def validate_password(self, password):
+    if not (any(c.isalpha() for c in password.data) and \
+          any(c.isdigit() for c in password.data) and \
+          any(c in '!@#$%^&*()' for c in password.data)):
+          raise ValidationError('パスワードには【英数字と記号：!@#$%^&*()】を含める必要があります')
