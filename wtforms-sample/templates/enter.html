@@ -14,7 +14,7 @@
       </ul>
     {% endif %}
   </div>
-  <form method = "POST">
+  <form method = "POST" novalidate>
     {{ form.name.label }}{{ form.name(size=20) }}<br>
     {{ form.age.label }}{{ form.age }}<br>
     {{ form.password.label }}{{ form.password(size=20) }}<br>
